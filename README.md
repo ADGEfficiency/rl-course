@@ -15,7 +15,7 @@ npm start
 ## Goals for the course
 
 The goals of the course are to: 
-- introduce you to the **concepts, ideas and terminology** of reinforcement learning
+- introduce you to the concepts, ideas and terminology of reinforcement learning
 - become familiar with important literature
 - understand the current state of the art
 - pass on advice from running reinforcement learning experiments
