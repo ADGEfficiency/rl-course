@@ -1,8 +1,8 @@
-Materials for the introductory reinforcement learning course *A Glance at Reinforcement Learning*.  I also maintain a curated collection of reinforcement learning resources in the [rl-resources repo](https://github.com/ADGEfficiency/rl-resources).
+Materials for the introductory reinforcement learning course *A Glance at Reinforcement Learning*.  If you like this, Make sure you check out [rl-resources](https://github.com/ADGEfficiency/rl-resources), which contains all the literature used in the course and tips on where to go next.
 
 This project is built and maintained by Adam Green - [adam.green@adgefficiency.com](adam.green@adgefficiency.com).
 
-## Setup
+The course is built using `reveal.js`.  [A pdf of the slides is included](https://github.com/ADGEfficiency/rl-course/blob/master/slides.pdf), or you can locally deploy the presentation using:
 
 ```bash
 brew install node 

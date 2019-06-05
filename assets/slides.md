@@ -3,32 +3,92 @@
 
 <a href="#/intro">Introduction</a>
 
-<a href="#/background">Statistics and machine learning background</a>
-
 <a href="#/intro_rl">Introduction to reinforcement learning</a>
+
+<a href="#/background">Statistics and machine learning background</a>
 
 <a href="#/mdp">Markov Decision Processes</a>
 
-<a href="#/value">Value function methods</a>
+<a href="#/value">Value functions </a>
 
-<a href="#/policy-optimization">Policy optimization methods</a>
+<a href="#/policy-optimization">Policy optimization</a>
 
 <a href="#/model-based">Model-based reinforcement learning</a>
 
 <a href="#/alphago">AlphaGo to AlphaZero</a>
+
+<a href="#/practical">Practical concerns</a>
 
 
 #  Introduction
 <section id="intro">
 
 
+- Experience
+
+|   |   |
+|---|---|
+|$s$ |state     |
+|$s'$|next state|
+|$a$ |action    |
+|$r$ |reward    |
+
+- Measurements of total reward
+
+|   |   |
+|---|---|
+|$ \mathbf{E}[f(x)] $  | expectation of $f(x)$ |
+|$\gamma$ |  discount factor [0, 1) |
+|$G_t$ | discounted return after time t|
+|$ V_\{\pi} (s)$| value function |
+|$ Q_\{\pi} (s,a)$| action-value function |
+
+- Taking actions
+
+|   |   |
+|---|---|
+|$a \sim \pi(s)$ | sampling action from a stochastic policy|
+|$a = \pi(s)$|deterministic policy|
+|$\pi^\star$|optimal policy|
+|$\theta , \omega$| function parameters |
+
+
+## This course
+
+Developed over two years
+- 10 courses, ~90 students
+
+Two day introduction to reinforcement learning at Data Science Retreat in Berlin
+- no familiarity with reinforcement learning 
+- familiarity with supervised learning
+
+Goals for today
+- introduction to supervised learning
+- landscape of modern reinforcement learning - terminology, key algorithms
+- challenges in modern reinforcement learning
+- where to go next
+
+
+## Where to go next
+
+My personal collection of reinforcement learning resources 
+- [ADGEfficiency/rl-resources](https://github.com/ADGEfficiency/rl-resources)
+
+Open AI's Spinning Up in Deep RL 
+- [lecture](https://www.youtube.com/watch?v=fdY7dt3ijgY) - [notes](https://spinningup.openai.com/en/latest/)
+
+Sutton & Barto - An Introduction to Reinforcement Learning (2nd Edition) 
+- [textbook pdf](http://incompleteideas.net/book/RLbook2018trimmed.pdf)
+
+
 ## Where are we today?
 
-AlphaGo was a milestone achievement for reinforcement learning
-- generalized across other perfect information, deterministic games
+<img src="assets/images/alphago.jpg"
+	width="35%"
+	height="35%">
 
-Lots of research
-- testing using Atari or Mujocco
+AlphaGo was a milestone achievement for reinforcement learning
+- 10 years ahead of schedule
 
 Fleeting glimpses of application in industry
 - Google data centres
@@ -40,7 +100,7 @@ Modern trends
 - deep neural networks as function approximators
 - improvements on old algorithms (Q-Learning -> DQN)
 - new algorithms (MCTS)
-- access to compute
+- access to GPU compute
 
 Challenges
 - hidden information
@@ -53,7 +113,6 @@ Challenges
 
 Atari
 - Performance - Hessel et. al (2017) Rainbow - [paper](https://arxiv.org/abs/1710.02298)
-- Sample efficiency - Kaiser et. al (2019) SimPLe - [paper](https://arxiv.org/pdf/1903.00374.pdf)
 
 AlphaZero
 - DeepMind - built on top of MCTS
@@ -70,22 +129,15 @@ World Models
 <img src="assets/images/montezuma.png"
 	width="35%"
 	height="35%">
-<figcaption>Montezuma's Revenge - known for being a difficult exploration problem, state of the art is a [combination of imitation and reinforcement learning](https://arxiv.org/abs/1812.03381)</figcaption>
-
-
-## Atari
+<figcaption>Montezuma's Revenge - a difficult exploration problem</figcaption>
 
 The Atari Learning Environment (ALE) is a key reinforcement learning benchmark
 - learning from pixels
 - discrete space
 - stack four frames to make Markovian
 
-The 2013 DQN paper has seven superhuman agents
-- since 2013 many improvements have been made to DQN
-- the state of the art today on Atari is the model free algorithm Rainbow, which combines these improvements
 
-
-## AlphaZero
+## AlphaGo to AlphaZero
 
 <img src="assets/images/ag_learning_nets.png"
 	width="35%"
@@ -93,17 +145,15 @@ The 2013 DQN paper has seven superhuman agents
 <figcaption></figcaption>
 
 
-## AlphaZero
+## AlphaGo to AlphaZero
 
-Generalization of superhuman performance across Go and Chess
-- model based
+Generalization of superhuman performance across Go, Chess and Shogi
+- self play
 - planning using Monte Carlo Tree Search
 - deep convolutional residual networks
 
 AlphaGo -> AlphaGoZero -> AlphaZero
 - removed dependence on human expert data
-- reduced searching
-- less compute
 
 
 ## Open AI Five
@@ -115,28 +165,39 @@ AlphaGo -> AlphaGoZero -> AlphaZero
 
 ## Open AI Five
 
-Semi-professional level
-- hidden infomation team game
-- learning from n-d arrays
-- simplifed version of the full game
+Real time strategy game
+- hidden information team game
 - large & continuous action space
 
-Finals on April 13th 2019
+Recently beat the world champions OG 2-0
+- learning from n-d arrays
+- simplified version of the full game
 
 
 ## World Models
 
-TODO picture
+<img src="assets/images/wm_flow.png"
+	width="50%"
+	height="50%">
 
-Really cool use of auto encoders, LSTMs, and evolutionary methods.
+
+## World Models
 
 High quality interactive [blog post](https://worldmodels.github.io/)
 
 Model based reinforcement learning
-- auto-encoder to transform pixel into a latent space
-- agent makes decisions based on latent space
-- lstm memory that makes predictions on next latent space
-- covariance matrix adaptation evolution strategy (CMA-ES) to optimize parameters of a simple controller
+- autoencoder to compress image
+- LSTM memory to compress time
+- CMA-ES for control
+
+
+## Notable organizations
+
+DeepMind
+
+Open AI
+
+Berkley
 
 
 ## Notable people*
@@ -167,77 +228,310 @@ Adam Green - [adam.green@adgefficiency.com](adam.green@adgefficiency.com) - [adg
 Enjoy building computational models
 
 
-## This course
+# Introduction to reinforcement learning
 
-Developed over two years
-- 10 courses, ~90 students
+<section id="intro_rl">
 
-Originally a two day introduction to reinforcement leaning at Data Science Retreat in Berlin
-- students had familiarity with supervised learning
-- no familiarity with reinforcement learning
+*what else could/should I try before reinforcement learning?*
 
-Goals for today
-- landscape of reinforcement learning - terminology, key algorithms
-- challenges in modern reinforcement learning
-- where to go next
+*is my problem a reinforcement learning problem?*
+
+*overview of the reinforcement learning landscape*
 
 
-## Where to go next
+## Learning through action
 
-Open AI's Spinning Up in Deep RL - [lecture]() - [notes]()
+Sequential decision making
+- seeing cause and effect
+- consequences of actions 
+- what to do to achieve goals
 
-Sutton & Barto - An Introduction to Reinforcement Learning (2nd Edition) - [textbook pdf](http://incompleteideas.net/book/RLbook2018trimmed.pdf)
+Substrate independent
+- occurs in silicon and biological brains
 
-David Silver's UCL lectures [YouTube](https://www.youtube.com/watch?v=2pWv7GOvuf0)
-
-CS294 - Berkley Deep Reinforcement Learning - [course notes](http://rail.eecs.berkeley.edu/deeprlcourse/) - [lecture videos](https://www.youtube.com/playlist?list=PLkFD6_40KJIxJMR-j5A1mkxK26gh_qg37)
-Environments - [Open AI gym](https://github.com/openai/gym)
-
-Agents - [Open AI baselines](https://github.com/openai/baselines) - [TF Agents]() - [Dopamine]()
-
-
-
-## Nomenclature
-
-Experience
-
-|   |   |
-|---|---|
-|$s$ |state     |
-|$s'$|next state|
-|$a$ |action    |
-|$r$ |reward    |
-
-Measurements of total reward
-
-|   |   |
-|---|---|
-|$ \mathbf{E}[f(x)] $  | expectation of $f(x)$ |
-|$\gamma$ |  discount factor [0, 1) |
-|$G_t$ | discounted return after time t|
-|$ V_\{\pi} (s)$| value function |
-|$ Q_\{\pi} (s,a)$| action-value function |
+Key features
+- trial & error search
+- delayed reward
 
 
-## Nomenclature
+## What is reinforcement learning?
 
-Taking actions
+Computational approach to learning through action
 
-- sampling action from a stochastic policy
+- end to end problem 
+- goal directed agent 
+- interacting with an environment
 
-$$a \sim \pi(s)$$
+Learning to maximize a reward signal
+- map environment observation to action
+- actions effect the future
 
-- deterministic policy
 
-$$a = \pi(s)$$
+##  Biological inspiration
 
-- optimal policy
+> Of all the forms of machine learning, reinforcement learning is the closest to the kind of learning that humans and other animals do, and many of the core algorithms of reinforcement learning were originally inspired by biological learning systems
+<figcaption>Sutton & Barto</figcaption>
 
-$$\pi^\star$$
 
-- function parameters (weights)
+##  Dopamine as a value function
 
-$$\theta , \omega$$
+Concentration of dopamine associated with the start of the stimulus
+<img src="assets/images/s2_f3.png"
+	width="30%"
+	height="30%">
+
+Expected reward not experienced -> no dopamine
+<img src="assets/images/s2_f4.png"
+	width="30%"
+	height="30%">
+
+<figcaption>Fig. 3. from [Glimcher (2011) Understanding dopamine and reinforcement learning](https://www.pnas.org/content/108/Supplement_3/15647)</figcaption>
+
+
+## Applications of reinforcement learning
+
+Sequential decision making problems
+
+- control physical systems
+- interact with users
+- solve logistical problems
+- play games
+- learn sequential algorithms
+- chess
+- optimization of refinery
+- calf learning to walk
+- robot battery charging
+- making breakfast
+
+<figcaption>David Silver - http://www0.cs.ucl.ac.uk/staff/d.silver/web/Resources_files/deep_rl.pdf</figcaption>
+<figcaption>Sutton & Barto</figcaption>
+
+
+<img src="assets/images/mdp.png"
+	width="80%"
+	height="80%">
+
+
+## Is my problem a reinforcement learning problem?
+
+What is the action space
+- what can the agent choose to do
+- does the action change future states
+
+What is the reward function
+- does it incentive behaviour
+
+It is a complex problem
+- linear programming or cross entropy may offer a simpler solution
+
+Can I sample efficiently / cheaply
+- do you have a simulator
+
+
+## Reinforcement learning is hard
+
+Debugging implementations is hard
+- very easy to have subtle bugs that don't break your code
+
+Tuning hyperparameters is hard
+- tuning hyperparameters can also cover over bugs!
+
+Instability across random seeds
+- results will succeed and fail over different random seeds (same hyperparameters!)
+- this means you need to do a lot more experiments
+
+Machine learning is an empirical science
+- the ability to do more experiments directly correlates with progress
+- this most true in reinforcement learning
+
+
+
+## The control problem
+
+Trying to take good actions
+- generate and test
+- trial and error learning
+- evolution
+
+Prediction and control
+- supervised and reinforcement
+- being able to predict allows us to take good actions
+
+
+## Control methods
+
+Without gradients
+
+- guess and check
+- cross entropy method
+- evolutionary methods
+- constrained optimization
+
+Gradient based
+
+- optimal control - model based
+- model based reinforcement learning
+- model free reinforcement learning
+
+
+## Constrained optimization
+
+Guaranteed convergence to global optimum for convex system of equations
+- mixed integer linear programs can be used to model many business problems
+
+```
+minimize cost function
+
+subject to equality ( == ) constraints
+subject to inequality ( >= or <= ) constraints
+```
+
+
+## Evolutionary methods
+
+Biologically inspired - selection, reproduction and mutation
+- easily parallelizable
+- good in partially observed environments
+
+CMA-ES 
+- good algorithm up to a few thousand parameters
+- used in World Models to learn parameters of a linear controller
+
+
+## Optimal control
+
+ICML 2018: Tutorial Session: Optimization Perspectives on Learning to Control - [lecture](https://www.youtube.com/watch?v=hYw_qhLUE0o) - [slides](https://people.eecs.berkeley.edu/~brecht/l2c-icml2018/Recht_ICML_Control-RL_tutorial.pdf)
+
+Exists both in parallel and overlapping with reinforcement learning
+- focuses on continuous spaces and environment models
+- includes PID control (95% of all industrial control is PI), Model Predictive Control (MPC)
+
+Linear Quadratic Regulator
+- linear transition dynamics, quadratic cost
+
+
+## The four grades of competence
+
+Each is a successive application of generate and test with improved competence
+- competence = ability to act well
+- comprehension = understanding
+
+<figcaption>Dennet - From Bach to Bacteria and Back</figcaption>
+
+
+## The four grades of competence
+
+1 - Darwinian
+- pre-designed and fixed competence
+- no learning within lifetime
+- global improvement via local selection
+
+2 - Skinnerian
+- the ability to adjust behaviour through reinforcement
+- learning within lifetime
+- hardwired to seek reinforcement
+
+
+## The four grades of competence
+
+3 - Popperian
+- learns models of the environment
+- local improvement via testing behaviours offline
+- crows, cats, dogs, dolphins & primates
+
+4 - Gregorian
+- builds thinking tools
+- arithmetic, democracy & computers
+- systematic exploration of solutions
+- local improvement via higher order control of mental searches
+- only humans
+
+
+## The four grades of competence
+
+Darwinian
+- fixed competences, tested by selection
+
+Skinnerian
+- adjusts behaviour through reinforcement
+
+Popperian
+- learns models of the environment, tests using environment models
+
+Gregorian
+- builds thinking tools
+
+
+
+
+## Reward hypothesis
+
+Maximising expected return (which is what agent's do) is making an assumption about the nature of our goals
+
+> Goals can be described by the maximization of expected cumulative reward
+
+- do humans optimize for expected value?
+- what about multi-modal distributions?
+
+The Reward Engineering Principle
+
+> As reinforcement-learning based AI systems become more general and autonomous, the design
+> of reward mechanisms that elicit desired behaviours becomes both
+> more important and more difficult.
+
+<figcaption>The Reward Engineering Principle - [Dewey (2014) Reinforcement Learning and the Reward Engineering Principle](http://www.danieldewey.net/reward-engineering-principle.pdf)</figcaption>
+
+
+## Context within machine learning
+
+<img src="assets/images/s2_f1.png"
+	width="70%"
+	height="70%">
+<figcaption></figcaption>
+
+
+## Contrast with supervised learning
+
+Supervised learning
+- given a dataset with labels
+- test on unseen data
+
+Reinforcement learning
+- need to generate data by taking actions
+- need to label data
+
+
+## Contrast with supervised learning
+
+Freedom from the constraint of a dataset
+- hard to access high quality datasets
+- easy to access high quality simulators
+
+Democratization
+
+Requirement of a dataset is replaced with requirement of a simulator
+- sample inefficiency limits learning from small number of samples
+
+
+## Reinforcement learning data
+
+Reinforcement learning involves
+
+- generating data by taking actions
+- creating targets for data
+
+One sample of data = experience/transition tuple $(s,a,r,s')$
+
+- no implicit target
+
+The dataset we generate is the agent's memory
+
+- list of experienced transitions
+
+$$[(s\_{0}, a_0, r_1, s_1), $$
+$$(s_1, a_1, r_2, s_2), $$
+$$...$$
+$$(s_n, a_n, r_n, s_n)] $$
 
 
 # Statistics and machine learning background
@@ -406,6 +700,11 @@ Recurrent
 All use features to predict a target
 
 
+## Feedfoward
+
+
+
+
 ## Bootstrapping
 
 Create targets using bootstrapping
@@ -474,280 +773,6 @@ Using the same random seed should result in the same random numbers
 
 Instability of reinforcement learning across different random seeds is a key message of this course
 
-
-# Introduction to reinforcement learning
-
-<section id="intro_rl">
-
-*what else could/should I try before reinforcement learning?*
-
-*is my problem a reinforcement learning problem?*
-
-*overview of the reinforcement learning landscape*
-
-
-## Learning through action
-
-Sequential decision making
-- seeing cause and effect
-- consequences of actions 
-- what to do to achieve goals
-
-Substrate independent
-- occurs in silicon and biological brains
-
-Key features
-- trial & error search
-- delayed reward
-
-
-## What is reinforcement learning?
-
-Computational approach to learning through action
-
-End to end problem of goal directed agent interaction with an environment
-
-Learning to maximize a reward signal
-- map situations to actions
-- actions effect the future
-
-
-## The control problem
-
-Trying to take good actions
-- generate and test
-- trial and error learning
-- evolution
-
-Prediction and control
-- supervised and reinforcement
-- being able to predict allows us to take good actions
-
-
-## Control methods
-
-Without gradients
-
-- guess and check
-- cross entropy method
-- evolutionary methods
-- constrained optimization
-
-Gradient based
-
-- optimal control - model based
-- model based reinforcement learning
-- model free reinforcement learning
-
-
-## The four grades of competence
-
-Each is a successive application of generate and test with improved competence
-- competence = ability to act well
-
-
-## The four grades of competence
-
-Darwinian
-- pre-designed and fixed competence
-- no learning within lifetime
-- global improvement via local selection
-
-Skinnerian
-- also has the ability to adjust behaviour through reinforcement
-- learning within lifetime
-- hardwired to seek reinforcement
-
-<figcaption>Dennet - From Bach to Bacteria and Back</figcaption>
-
-
-## The four grades of competence
-
-Popperian
-- learns models of the environment
-- local improvement via testing behaviours offline
-- crows, cats, dogs, dolphins & primates
-
-Gregorian
-- builds thinking tools
-- arithmetic, democracy & computers
-- systematic exploration of solutions
-- local improvement via higher order control of mental searches
-- only humans
-
-<figcaption>Dennet - From Bach to Bacteria and Back</figcaption>
-
-
-## The four grades of competence
-
-Darwinian
-- fixed competences, tested by selection
-
-Skinnerian
-- adjusts behaviour through reinforcement
-
-Popperian
-- learns models of the environment, tests using environment models
-
-Gregorian
-- builds thinking tools
-
-
-## Applications of reinforcement learning
-
-Sequential decision making problems
-
-- control physical systems
-- interact with users
-- solve logistical problems
-- play games
-- learn sequential algorithms
-
-<figcaption>[David Silver – Deep Reinforcement Learning](http://www0.cs.ucl.ac.uk/staff/d.silver/web/Resources_files/deep_rl.pdf)</figcaption>
-
-- chess
-- optimization of refinery
-- calf learning to walk
-- robot battery charging
-- making breakfast
-
-<figcaption>Sutton & Barto</figcaption>
-
-
-## Applications of reinforcement learning
-
-Requirement of a reward signal
-
-Ability to simulate through sample inefficiency
-
-
-<img src="assets/images/mdp.png"
-	width="80%"
-	height="80%">
-
-
-## Is my problem a reinforcement learning problem?
-
-What is the action space
-- what can the agent choose to do
-- does the action change future states
-
-What is the reward function
-- does it incentive behaviour
-
-It is a complex problem
-- linear programming or cross entropy may offer a simpler solution
-
-Can I sample efficiently / cheaply
-- do you have a simulator
-
-
-## Reinforcement learning is hard
-
-Debugging implementations is hard
-- very easy to have subtle bugs that don't break your code
-
-Tuning hyperparameters is hard
-- tuning hyperparameters can also cover over bugs!
-
-Instability across random seeds
-- results will succeed and fail over different random seeds (same hyperparameters!)
-- this means you need to do a lot more experiments
-
-Machine learning is an empirical science
-- the ability to do more experiments directly correlates with progress
-- this most true in reinforcement learning
-
-
-##  Biological inspiration
-
-> Of all the forms of machine learning, reinforcement learning is the closest to the kind of learning that humans and other animals do, and many of the core algorithms of reinforcement learning were originally inspired by biological learning systems
-<figcaption>Sutton & Barto</figcaption>
-
-
-##  Dopamine as a value function
-
-Concentration of dopamine associated with the start of the stimulus
-<img src="assets/images/s2_f3.png"
-	width="30%"
-	height="30%">
-
-Expected reward not experienced -> no dopamine
-<img src="assets/images/s2_f4.png"
-	width="30%"
-	height="30%">
-
-<figcaption>Fig. 3. from [Glimcher (2011) Understanding dopamine and reinforcement learning](https://www.pnas.org/content/108/Supplement_3/15647)</figcaption>
-
-
-## Reward hypothesis
-
-Maximising expected return (which is what agent's do) is making an assumption about the nature of our goals
-
-> Goals can be described by the maximization of expected cumulative reward
-
-- do humans optimize for expected value?
-- what about multi-modal distributions?
-
-The Reward Engineering Principle
-
-> As reinforcement-learning based AI systems become more general and autonomous, the design
-> of reward mechanisms that elicit desired behaviours becomes both
-> more important and more difficult.
-
-<figcaption>The Reward Engineering Principle - [Dewey (2014) Reinforcement Learning and the Reward Engineering Principle](http://www.danieldewey.net/reward-engineering-principle.pdf)</figcaption>
-
-
-## Context within machine learning
-
-<img src="assets/images/s2_f1.png"
-	width="70%"
-	height="70%">
-<figcaption></figcaption>
-
-
-## Contrast with supervised learning
-
-Supervised learning
-- given a dataset with labels
-- test on unseen data
-
-Reinforcement learning
-- need to generate data by taking actions
-- need to label data
-
-
-## Contrast with supervised learning
-
-Freedom from the constraint of a dataset
-- hard to access high quality datasets
-- easy to access high quality simulators
-
-Democratization
-
-Requirement of a dataset is replaced with requirement of a simulator
-- sample inefficiency limits learning from small number of samples
-
-
-## Reinforcement learning data
-
-Reinforcement learning involves
-
-- generating data by taking actions
-- creating targets for data
-
-One sample of data = experience/transition tuple $(s,a,r,s')$
-
-- no implicit target
-
-The dataset we generate is the agent's memory
-
-- list of experienced transitions
-
-$$[(s\_{0}, a_0, r_1, s_1), $$
-$$(s_1, a_1, r_2, s_2), $$
-$$...$$
-$$(s_n, a_n, r_n, s_n)] $$
 
 
 
@@ -2424,20 +2449,93 @@ Planning algorithm
 ![fig](assets/images/MCTS_AG_three.png)
 
 
+
 ## AlphaGo Zero
 
 
+## Key ideas in AlphaGo Zero
 
+Simpler
+
+Search
+
+Adversarial
+
+Machine knowledge only
+
+
+## AlphaGo Zero Results
+
+Training time & performance
+- AG Lee trained over several months
+- AG Zero beat AG Lee 100-0 after 72 hours of training
+
+Computational efficiency
+- AG Lee = distributed w/ 48 TPU
+- AG Zero = single machine w/ 4 TPU
+
+
+![fig](assets/images/alphago-training.gif)
+
+[AlphaGo Zero: Learning from scratch](https://deepmind.com/blog/alphago-zero-learning-scratch/)
+
+
+
+## AlphaGo Zero learning curves
+
+![fig](assets/images/Zero_learning_curves.png)
+
+
+## AlphaGo Zero innovations
+
+Learns using only self play
+- no learning from human expert games
+- no feature engineering
+- learn purely from board positions
+
+Single neural network
+- combine the policy & value networks
+
+MCTS only during acting (not during learning)
+
+Use of residual networks
+
+
+## AlphaGo Zero acting & learning
+
+![fig](assets/images/Zero_act_learn.png)
+
+
+## Search in AlphaGo Zero
+
+**Policy evaluation**
+
+Policy is evaluated through self play
+
+This creates high quality training signals - the game result
+
+**Policy improvement**
+
+MCTS is used during acting to create the improved policy
+
+The improved policy generated during acting becomes the target policy during training
+
+[Keynote David Silver NIPS 2017 Deep Reinforcement Learning Symposium AlphaZero
+](https://www.youtube.com/watch?v=A3ekFcZ3KNw)
+
+
+![fig](assets/images/Reddit_AMA.png)
+
+
+![fig](assets/images/Reddit_AMA_posts.png)
 
 
 ## AlphaZero
 
+General version of AlphaGoZero that has mastered Chess and Shogi
 
 
-
-
-
-## AlphaGo, in context – Andrej Karpathy
+## [AlphaGo, in context – Andrej Karpathy](https://medium.com/@karpathy/alphago-in-context-c47718cb95a5)
 
 Convenient properties of Go
 - fully deterministic
@@ -2449,14 +2547,315 @@ Convenient properties of Go
 - *huge datasets of human play*
 - energy consumption (human ≈ 50 W) 1080 ti = 250 W
 
-<figcaption>[Medium blog post - originally written about AlphaGo, most applies to AlphaZero](https://medium.com/@karpathy/alphago-in-context-c47718cb95a5)</figcaption>
+
+# Practical concerns
+<section id="practical">
+
+
+## Should I use reinforcement learning for my problem?
+
+It is a complex problem
+- classical optimization techniques such as linear programming or cross entropy may offer a simpler solution
+- evolutionary methods if you have > 10,000 parameters
+
+Can I sample efficiently / cheaply
+- **do you have a simulator**
+
+
+## Should I use reinforcement learning for my problem?
+
+What is the action space
+- what can the agent choose to do
+- does the action change the environment
+- continuous or discrete
+
+What is the reward function
+- does it incentive behaviour
+
+
+## Reinforcement learning is hard
+
+Debugging implementations is hard
+- very easy to have subtle bugs that don't break your code
+
+Tuning hyperparameters is hard
+- tuning hyperparameters can also cover over bugs!
+
+Results will succeed and fail over different random seeds (same hyperparameters!)
+
+Machine learning is an empirical science, where the ability to do more experiments directly correlates with progress
+
+
+## Mistakes I've made
+
+Normalizing targets - a high initial target that occurs due to the initial weights can skew the normalization for the entire experiment
+
+Doing multiple epochs over a batch
+
+Not keeping batch size the same for experience replay & training
+
+Not setting `next_observation = observation`
+
+Not setting online & target network variables the same at the start of an experiment
+
+Not gradient clipping
+- clip the norm of the gradient (I've seen between 0 - 5)
+
+
+## Mistakes I've seen others make
+
+Since I started teaching in Batch 10 we have had three RL projects
+
+Saving agent brain
+- not saving the optimizer state
+
+Using too high a learning rate
+- learning rate is always important!!!
+
+Building both an agent and environment
+
+
+## Hyperparameters
+
+Policy gradients
+- learning rate
+- clipping of distribution parameters (stochastic PG)
+- noise for exploration (deterministic PG)
+- network structure
+
+Value function methods
+- learning rate
+- exploration (i.e. epsilon)
+- updating target network frequency
+- batch size
+- space discretization
+
+
+## Best practices
+
+Quick experiments on small test problems
+- CartPole for discrete action spaces
+- Pendulum for continuous action spaces
+
+Compare to baselines - a random agent is a good idea
+
+Make it easier to get learning to happen (initially)
+- input features, reward function design
+
+
+## Best practices
+
+Be careful not to overfit these simple problems
+- use low capacity neural networks
+
+Interpret & visualize learning process
+- state visitation, value functions
+
+Always use multiple random seeds
+
+Automate experiments - don't waste time watching them run!
+
+
+## Best practices
+
+In reinforcement learning we often don't know the true min/max/mean/standard deviation of observations/actions/rewards/returns
+
+Standardize data
+- if observations in unknown range, estimate running average mean & stdev
+- use the min & max if known
+
+Rescale rewards - but don’t shift mean
+
+Standardize prediction targets (i.e. value functions) the same way
+			
+
+## Best practices
+
+Batch size matters
+
+Policy gradient methods – weight initialization matters
+determines initial state visitation (i.e. exploration)
+
+DQN converges slowly
+
+
+## Best practices
+
+Compute useful statistics
+- explained variance (for seeing if your value functions are overfitting),
+- computing KL divergence of policy before and after update (a spike in KL usually means degradation of policy)
+- entropy of your policy
+
+Visualize statistics
+- running min, mean, max of episode returns
+- KL of policy update
+- explained variance of value function fitting
+- network gradients
+
+Gradient clipping is helpful - dropout & batchnorm not so much
+
+
+## [Lessons Learned Reproducing a Deep Reinforcement Learning Paper - Amid Fish](http://amid.fish/reproducing-deep-rl)
+
+
+![fig](assets/images/timeline.png)
+
+
+![fig](assets/images/costs.png)
+
+
+![fig](assets/images/fail_expts.png)
+
+
+> It’s not like my experience of programming in general so far where you get stuck but there’s usually a clear trail to follow and you can get unstuck within a couple of days at most.
+
+> It’s more like when you’re trying to solve a puzzle, there are no clear inroads into the problem, and the only way to proceed is to try things until you find the key piece of evidence or get the key spark that lets you figure it out.
+
+
+## Debugging
+
+Debugging in four steps
+1. evidence about what the problem might be
+2. form hypothesis about what the problem might be (evidence based)
+3. choose most likely hypothesis, fix
+4. repeat until problem goes away
+
+Most programming involves rapid feedback
+- gathering evidence can be cheaper than forming hypotheses
+
+In RL (and supervised learning with long run times) gathering evidence is expensive
+- suggests spending more time on the hypothesis stage
+- switch from experimenting a lot and thinking little to **experimenting a little and thinking a lot**
+- reserve experiments for after you've really fleshed out the hypothesis space
+
+
+## Get more out of runs
+
+Recommends keeping a detailed work log
+- what output am I working on now
+- think out loud - what are the hypotheses, what to do next
+- record of current runs with reminder about what each run is susposed to answer
+- results of runs (i.e. TensorBoard)
+
+Try to predict future failures
+
+
+## Get more out of runs
+
+Log all the metrics you can
+- policy entropy for policy gradient methods
+
+![fig](assets/images/policy_entropy.png)
+
+
+## Matthew Rahtz of Amid Fish
+
+RL specific
+- end to end tests of training
+- gym envs: -v0 environments mean 25% of the time action is ignored and previous action is repeated.  Use -v4 to get rid of the randomness
+
+General ML
+- for weight sharing, be careful with both dropout and batchnorm - you need to match additional variables
+- spikes in memory usages suggest validation batch size is too big
+- if you are struggling with the Adam optimizer, try an optimizer without momentum (i.e. RMSprop)
+
+TensorFlow
+- `sess.run()` can have a large overhead.  Try to group session calls
+- use the `allow_growth` option to avoid TF reserving memory it doesn't need
+- don't get addicted to TensorBoard - let your expts run!
+
+
+## [Deep Reinforcement Learning Doesn't Work Yet - Sorta Insightful](https://www.alexirpan.com/2018/02/14/rl-hard.html)
+
+
+![fig](assets/images/work_bender.jpg)
+
+
+## Modern RL is sample inefficient
+
+<img src="assets/images/rainbow_fig1.png" height="60%" width="60%">
+
+
+## Modern RL is sample inefficient
+
+To pass the 100% median performance
+- Rainbow = 18 million frames = 83 hours of play
+- Distributional DQN = 70 million
+- DQN = never (even after 200 million frames!)
+
+We can ignore sample efficiency if sampling is cheap
+
+In the real world it can be hard or expensive to generate experience
+
+It's not about learning time - it's about the ability to sample
+
+
+## Other methods often work better
+
+Many problems are better solved by other methods
+- allowing the agent access to a ground truth model (i.e. simulator)
+- model based RL with a perfect model
+
+<img src="assets/images/work_atari.png" height="60%" width="60%">
+
+The generalizability of RL means that except in rare cases, domain specific algorithms work faster and better
+
+
+## Requirement of a reward function
+
+Reward function design is difficult
+- need to encourage behaviour
+- need to be learnable
+
+Shaping rewards to help learning can change behaviour
+
+
+## Unstable and hard to reproduce results
+
+<img src="assets/images/work_seeds.png" height="60%" width="60%">
+
+Only difference is the random seed!
+
+30% failure rate counts as working
+
+
+## Unstable and hard to reproduce results
+
+Machine learning adds more dimensions to your space of failure cases
+
+RL adds an additional dimension - **random change**
+- A sample inefficient and unstable training algorithm heavily slows down your rate of productive research
+
+<img src="assets/images/work_ml.png" height="60%" width="60%" align="top">
 
 
 
-# Practical concers
+> [Supervised learning] wants to work. Even if you screw something up you’ll usually get something non-random back. 
+
+> RL must be forced to work. If you screw something up or don't tune something well enough you’re exceedingly likely to get a policy that is even worse than random. And even if it’s all well tuned you’ll get a bad policy 30% of the time, just because.
+
+> Long story short your failure is more due to the difficulty of deep RL, and much less due to the difficulty of designing neural networks - Hacker News comment from Andrej Karpathy, back when he was at OpenAI
 
 
-## Deep RL doesn't work yet
+## Going forward & the future
+
+Make learning eaiser
+
+- ability to generate near unbounded amounts of experience
+- problem is simplified into an eaiser form
+- you can introduce self-play into learning
+- learnable reward signal
+- any reward shaping should be rich
+
+The future
+- local optima are good enough (is any human behaviour globally optimal)
+- improvements in hardware help with sample inefficiency
+- more learning signal - hallucinating rewards, auxillary tasks, model learning
+- model learning fixes a bunch of problems - difficulty is learning one
 
 
-## Deep RL that matters
+## Going forward & the future
+
+> The way I see it, either deep RL is still a research topic that isn’t robust enough for widespread use, or it’s usable and the people who’ve gotten it to work aren’t publicizing it. I think the former is more likely.
+
+Many things need to go right for RL to work - success stories are the exception, not the rule
