@@ -12,7 +12,15 @@ npm install
 npm start
 ```
 
-## Content
+## Goals for the course
+
+The goals of the course are to: 
+- introduce you to the **concepts, ideas and terminology** of reinforcement learning
+- become familiar with important literature
+- understand the current state of the art
+- pass on advice from running reinforcement learning experiments
+
+Course content:
 
 - background statistical concepts
 - Markov Decision processes
@@ -21,14 +29,3 @@ npm start
 - AlphaGo to AlphaZero
 - practical advice for experiments
 - current state of the art
-
-## Goals for the course
-
-Introduction to **concepts, ideas and terminology**.  Familiarity with important literature.  Understanding of the state of the field today.  Practical strategies to run reinforcement learning experiments.
-
-## Where to go next
-
-- The Holy Book of reinforcement learning - [Sutton & Barto - Reinforcement Learning: An Introduction - 2nd Edition](http://incompleteideas.net/book/RLbook2018.pdf)
-- UCL Lectures - David Silver (Head of Reinforcement Learning at DeepMind) - [slides](https://github.com/ADGEfficiency/dsr_rl/tree/master/literature/silver_lectures) - [lecture videos](https://www.youtube.com/watch?v=2pWv7GOvuf0)
-
-Further resources (video lectures, blog posts etc) are listed in [dsr-rl/resources.md](https://github.com/ADGEfficiency/dsr-rl/blob/master/readme.md).
